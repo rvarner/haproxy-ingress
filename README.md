@@ -4,7 +4,7 @@
 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) controller
 implementation for [HAProxy](http://www.haproxy.org/) loadbalancer.
 
-[![Build Status](https://travis-ci.org/jcmoraisjr/haproxy-ingress.svg?branch=master)](https://travis-ci.org/jcmoraisjr/haproxy-ingress) [![Docker Repository on Quay](https://quay.io/repository/jcmoraisjr/haproxy-ingress/status "Docker Repository on Quay")](https://quay.io/repository/jcmoraisjr/haproxy-ingress)
+[![Build Status](https://travis-ci.org/rvarner/haproxy-ingress.svg?branch=master)](https://travis-ci.org/rvarner/haproxy-ingress) [![Docker Repository on Quay](https://quay.io/repository/rvarner/haproxy-ingress/status "Docker Repository on Quay")](https://quay.io/repository/rvarner/haproxy-ingress)
 
 HAProxy Ingress is a Kubernetes ingress controller: it configures a HAProxy instance
 to route incoming requests from an external network to the in-cluster applications.
@@ -18,16 +18,16 @@ Find some useful links below:
 * Home of HAProxy Ingress docs: [haproxy-ingress.github.io/docs](https://haproxy-ingress.github.io/docs/)
 * Global configmap options and ingress/service annotations, now named configuration keys: [haproxy-ingress.github.io/docs/configuration/keys/](https://haproxy-ingress.github.io/docs/configuration/keys/)
 * Static command-line options: [haproxy-ingress.github.io/docs/configuration/command-line/](https://haproxy-ingress.github.io/docs/configuration/command-line/)
-* Old single-page doc (up to v0.8): [/release-0.8/README.md](https://github.com/jcmoraisjr/haproxy-ingress/blob/release-0.8/README.md)
+* Old single-page doc (up to v0.8): [/release-0.8/README.md](https://github.com/rvarner/haproxy-ingress/blob/release-0.8/README.md)
 
 ## Develop HAProxy Ingress
 
 Building HAProxy Ingress:
 
 ```
-mkdir -p $GOPATH/src/github.com/jcmoraisjr
-cd $GOPATH/src/github.com/jcmoraisjr
-git clone https://github.com/jcmoraisjr/haproxy-ingress.git
+mkdir -p $GOPATH/src/github.com/rvarner
+cd $GOPATH/src/github.com/rvarner
+git clone https://github.com/rvarner/haproxy-ingress.git
 cd haproxy-ingress
 make
 ```
