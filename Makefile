@@ -7,13 +7,14 @@ DOCKER_HUB=quay.io
 include container.mk
 
 GOOS=linux
-GOARCH=amd64
+GOARCH=arm
+GOARM=5
 GIT_REPO=$(shell git config --get remote.origin.url)
-ROOT_PKG=github.com/jcmoraisjr/haproxy-ingress/pkg
+ROOT_PKG=github.com/rvarner/haproxy-ingress/pkg
 
 .PHONY: build
 build:
-	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) go build \
+	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) GOARM=$(GOARM) go build \
 	  -installsuffix cgo \
 	  -ldflags "-s -w -X $(ROOT_PKG)/version.RELEASE=$(TAG) -X $(ROOT_PKG)/version.COMMIT=$(GIT_COMMIT) -X $(ROOT_PKG)/version.REPO=$(GIT_REPO)" \
 	  -o rootfs/haproxy-ingress-controller \
