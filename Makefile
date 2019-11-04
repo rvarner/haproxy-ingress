@@ -2,8 +2,8 @@
 default: build
 
 REPO_LOCAL=localhost/haproxy-ingress
-REPO_PUBLIC=quay.io/jcmoraisjr/haproxy-ingress
-DOCKER_HUB=quay.io
+REPO_PUBLIC=github.com/rvarner/haproxy-ingress
+DOCKER_HUB=hub.docker.com
 include container.mk
 
 GOOS=linux

@@ -13,16 +13,22 @@
 # limitations under the License.
 
 FROM haproxy:1.9.11-alpine
-RUN apk --no-cache add socat openssl lua5.3 lua-socket
+RUN apk --no-cache add socat openssl lua5.3 lua-socket binutils
 
+# NOTE: This needs to be the armhf version of dumb-init
 # dumb-init kindly manages SIGCHLD from forked HAProxy processes
-ARG DUMB_INIT_SHA256=81231da1cd074fdc81af62789fead8641ef3f24b6b07366a1c34e5b059faf363
-RUN wget -O/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64\
- && echo "$DUMB_INIT_SHA256  /dumb-init" | sha256sum -c -\
- && chmod +x /dumb-init \
- && mkdir -p /ingress-controller /etc/haproxy/maps
+#ARG DUMB_INIT_SHA256=81231da1cd074fdc81af62789fead8641ef3f24b6b07366a1c34e5b059faf363
+#RUN wget -O/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64\
+# && echo "$DUMB_INIT_SHA256  /dumb-init" | sha256sum -c -\
+# && chmod +x /dumb-init \
+
+RUN wget http://ftp.us.debian.org/debian/pool/main/d/dumb-init/dumb-init_1.2.0-1_armhf.deb \
+    && ar -x *.deb \
+    && tar -xvf data.tar.xz \
+    && ls usr/bin/dumb-init \
+    && mkdir -p /ingress-controller /etc/haproxy/maps
 
 COPY . /
 
 STOPSIGNAL SIGTERM
-ENTRYPOINT ["/dumb-init", "--", "/start.sh"]
+ENTRYPOINT ["/usr/bin/dumb-init", "--", "/start.sh"]
