@@ -1,5 +1,5 @@
 # HAProxy Ingress controller
-
+*Note:* Forking to provide full support for k3s on the Raspberry Pi (buster)
 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) controller
 implementation for [HAProxy](http://www.haproxy.org/) loadbalancer.
 
