@@ -13,7 +13,7 @@
 # limitations under the License.
 
 FROM haproxy:1.9.11-alpine
-RUN apk --no-cache add socat openssl lua5.3 lua-socket binutils
+RUN apk --no-cache add socat openssl lua5.3 lua-socket binutils dpkg
 
 # NOTE: This needs to be the armhf version of dumb-init
 # dumb-init kindly manages SIGCHLD from forked HAProxy processes
@@ -23,9 +23,7 @@ RUN apk --no-cache add socat openssl lua5.3 lua-socket binutils
 # && chmod +x /dumb-init \
 
 RUN wget http://ftp.us.debian.org/debian/pool/main/d/dumb-init/dumb-init_1.2.0-1_armhf.deb \
-    && ar -x *.deb \
-    && tar -xvf data.tar.xz \
-    && ls usr/bin/dumb-init \
+    && dpkg -i dumb-init_1.2.0-1_armhf.deb \
     && mkdir -p /ingress-controller /etc/haproxy/maps
 
 COPY . /
